@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 # from django.views.generic.edit import FormView
 from  django.views.generic.base import View
+from django.core.paginator import Paginator
 from .models import *
 
 bad_names = ['incidents', 'Дурак', 'Гад']
@@ -23,9 +24,22 @@ class PostDetail(View):
 def news_page_list(request):
     """ Представление для вывода страницы с новостями по заданию """
 
-    newslist = Post.objects.all().order_by('-rating')[:6]
+    newslist = Post.objects.all().order_by('-rating')[:10]
+    p = Paginator(newslist, 1)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = p.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = p.page(10)
+    except EmptyPage:
+        page_obj = p.page(p.num_pages)
+    context = {'page_obj': page_obj}
+    return render(request, 'news/news.html', {'newslist': newslist})#context
 
-    return render(request, 'news/news.html', {'newslist': newslist})
+
+
+class search(View):
+    template_name = 'news/search.html'
 
 
 # class Myform(FormView):

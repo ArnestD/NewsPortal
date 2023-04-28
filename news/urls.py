@@ -5,4 +5,5 @@ urlpatterns = [
     path('', news_page_list),
     path('authors/', AuthorsPage.as_view()),
     path('post/<int:pk>/', PostDetail.as_view()),
+    path('search/', search.as_view())
 ]

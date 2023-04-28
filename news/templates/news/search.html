@@ -1,5 +1,4 @@
 {% extends 'news/default.html' %}
-
 {% load static %}
 
 {% block MyCss %}
@@ -21,52 +20,61 @@
          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapseMenu">
           <span class="icon-bar">Меню</span>
         </button>
-        <a class="navbar-brand" href="http://127.0.0.1:8000/">SkillFactory News</a>
+        <a class="navbar-brand" href="#">SkillFactory News</i></a>
       </div>
       <div class="collapse" id="collapseMenu" >
         <ul class="nav navbar-nav navbar-right">
           <li><a href="https://apps.skillfactory.ru/" target="_blank">Учебная Платформа</a></li>
           <li><a href="http://127.0.0.1:8000/authors/">Авторы</a></li>
           <li><a href="http://127.0.0.1:8000/">На Глаvную</a></li>
-          <li><a href="http://127.0.0.1:8000/search">ПОИСК</a></li>
+          <li><a href="http://127.0.0.1:8000/search/">ПОИСК</a></li>
         </ul>
       </div>
     </div>
-</div>
-</div>
 
+<h1>Посты</h1>
 
-  <div class="container wb">
-    <div class="row centered">
-      <br><br>
-      <div class="col-lg-6">
-        <h4>Публикация № {{ ps.pk }}</h4>
-          <ul>
-              <li align="left">Категория поста:&nbsp;&nbsp;&nbsp;&nbsp;{{ ps.categoryType }}</li>
-              <li align="left">Автор поста:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ ps.author }}</li>
-              <li align="left">Рейтинг поста:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ ps.rating }}</li>
-          </ul>
-        <p><br><br></p>
-      </div>
-      <div class="col-lg-6">
-        <h4>Заголовок поста</h4>
-          <ul>
-              <h6>{{ ps.title }}</h6>
+   {# Добавляем форму, которая объединяет набор полей, которые будут отправляться в запросе #}
+   <form action="" method="get">
+       {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}
+       {{ filterset.form.as_p }}
+       {# Добавим кнопку отправки данных формы #}
+       <input type="submit" value="Найти" />
+   </form>
 
-          </ul>
-        <p><br><br></p>
-      </div>
+   <hr>
+   {% if products %}
+       <table>
+           <tr>
+               <td>ID поста</td>
+               <td>Автор</td>
+               <td>Статья/Новость</td>
+               <td>Дата</td>
+           </tr>
 
-      <div class="col-lg-2"></div>
-      <h3>Содержание публикации</h3>
-      <div class="col-lg-10 col-lg-offset-1" >
-        <p>{{ ps.text }}</p>
-      </div>
-    </div>
-  </div>
-<br><br>
-<hr />
-  <hr />
+           {% for product in newslist %}
+           <tr>
+               <td>{{ post_n.pk }}</td>
+               <td>{{ post_n.author }}</td>
+               <td>{{ post_n.dataCreations }}</td>
+               <td>{{ product.price|currency }}</td>
+               <td>{{ product.quantity }}</td>
+           </tr>
+           {% endfor %}
+
+       </table>
+   {% else %}
+       <h2>Постов нет</h2>
+   {% endif %}
+
+{%if page_obj.has_previous %} {# whether the previous page exists #}
+    <a href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}
+{% endif %}
+<span>{{page_obj.number}}</span> {# the current page number #}
+{%if page_obj.has_next %} {# whether the next page exists #}
+    <a href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}
+{% endif %}
+
   <div id="lg">
     <div class="container">
       <div class="row centered">

@@ -147,3 +147,12 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.dataCreation}, {self.userPost}"
+
+class Search(models.Model):
+    """
+    Модель Category
+    Темы, которые они отражают (спорт, политика, образование и т. д.).
+    Имеет единственное поле: название категории.
+    - <name> Поле должно быть уникальным (в определении поля необходимо написать параметр unique = True).
+    """
+    name = models.CharField(max_length=64, unique=True)
