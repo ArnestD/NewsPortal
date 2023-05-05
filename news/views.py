@@ -39,7 +39,7 @@ def news_page_list(request):
 
 
 class search(View):
-    template_name = 'news/search.html'
+    search = 'news/search.html'
 
 
 # class Myform(FormView):
