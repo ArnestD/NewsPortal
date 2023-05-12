@@ -6,7 +6,35 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>{{ appointment.client_name }} Спасибо за запись!</h2>
-    <p> Вы записаны на {{ appointment.date|date:"d-M-Y" }} по вопросу: {{ appointment.message|truncatechars:50 }} </p>
+    <h2>{{ appointment.client_name }}</h2>
+    <p> Добрый день! На нашем портале Появились новые посты</p>
+    <div class="container wb">
+        <div class="row centered">
+        <br><br>
+        <div class="col-lg-8 col-lg-offset-2">
+            <h4>Список новостей</h4>
+            <table >
+            <tr>
+                <td>ID поста</td>
+                <td>Дата создания</td>
+                <td>Статья/Новость</td>
+                <td>Автор</td>
+                <td>Рэйтинг поста</td>
+                <td>Заголовок</td>
+            </tr>
+                {% for post_n in newslist %}
+            <tr>
+                <td>{{ post_n.pk }}</td>
+                <td>{{ post_n.dataCreations }}</td>
+                <td>{{ post_n.categoryType }}</td>
+                <td>{{ post_n.author }}</td>
+                <td>{{ post_n.rating }}</td>
+                <td class="leftAligned"><a href=../post/{{ post_n.pk }}>{{ post_n.title }}</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <p><br><br></p>
+        </div>
+    </div>
 </body>
 </html>
