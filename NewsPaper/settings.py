@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django_filters',
     'protect',
     'sign',
+    'appointments',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -134,6 +135,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+DEFAULT_FROM_EMAIL = 'i@arnestdiablo.ru'
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
@@ -148,3 +151,15 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_SSL = True
+
+ADMINS = [
+    ('Arnest', 'i@arnestdiablo.ru'),
+]
+
+SERVER_EMAIL = 'NewsPortal@yandex.ru'
