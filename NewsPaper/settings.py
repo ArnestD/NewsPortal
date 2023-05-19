@@ -163,3 +163,9 @@ ADMINS = [
 ]
 
 SERVER_EMAIL = 'NewsPortal@yandex.ru'
+
+CELERY_BROKER_URL = 'redis://06U2JgV7awDPcsyngF1DCKJ3F4pSDCwF@redis-17832.c256.us-east-1-2.ec2.cloud.redislabs.com:17832'
+CELERY_RESULT_BACKEND = 'redis://06U2JgV7awDPcsyngF1DCKJ3F4pSDCwF@redis-17832.c256.us-east-1-2.ec2.cloud.redislabs.com:17832'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
