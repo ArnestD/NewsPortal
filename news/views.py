@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView
 from  django.views.generic.base import View
 from django.core.paginator import Paginator
 from .models import *
+import logging
 
 bad_names = ['incidents', 'Дурак', 'Гад']
 
@@ -52,3 +53,9 @@ class search(View):
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
+
+from django.http import HttpResponse
+logger = logging.getLogger(__name__)
+def index(request):
+    logger.error("Test!!")
+    return HttpResponse("Hello logging world.")
