@@ -1,11 +1,23 @@
 
+py --version
+python -m venv venv
+venv\scripts\activate
+pip list
+pip install django
+py -m pip install colorama
+cd
 
 
 http://127.0.0.1:8000/admin/
 
+django-admin startproject project
 python manage.py createsuperuser
 # На запрос имени пользователя вводите логин.
 python manage.py runserver
 # start
 python manage.py startapp sign
 # создание приложения
+
+
+python manage.py migrate
+python manage.py makemigrations

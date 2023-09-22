@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -136,7 +135,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DEFAULT_FROM_EMAIL = 'i@arnestdiablo.ru'
+DEFAULT_FROM_EMAIL = 'al.muzykant@yandex.ru'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
@@ -155,8 +154,8 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'al.muzykant'
+EMAIL_HOST_PASSWORD = '123456'
 EMAIL_USE_SSL = True
 
 ADMINS = [

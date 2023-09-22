@@ -1,9 +1,11 @@
 from django.shortcuts import redirect
 from django.views.generic import TemplateView, CreateView
 from .tasks import complete_order
-from .models import Order
+from django.core.mail import mail_managers
+from .models import Order, Post
 from datetime import datetime
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # главная страница - таблица заказов
 class IndexView(TemplateView):
@@ -38,3 +40,11 @@ def take_order(request, oid):
     order.time_out = datetime.now()
     order.save()
     return redirect('/')
+
+@receiver(post_save, sender=Post)
+def post_create(sender, instance, created, **kwargs);
+    mail_managers(
+        subject=subject,
+        message=instance.message,
+    )
+post_save.connect(post_create, )
